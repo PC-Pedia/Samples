@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset=utf-8>
+		<title>HTML 5 Storage Sample</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		
+		<script type="text/javascript">
+			//Load all books
+			$(document).ready(function(){
+				for(var x in localStorage){
+					showBook(localStorage[x]);
+				}
+			});
+			
+			//Return a new Id for books
+			function GetNewGuid(){
+				return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+					var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+					return v.toString(16);
+				});
+			}
+			
+			//Clear all input fields
+			function clearFields(){
+				$('#hddKey').val("");
+				$('#txtTitle').val("");
+				$('#txtAuthor').val("");
+			}
+			
+			//Save a book
+			function saveBook(){
+				var book;
+				
+				if($('#hddKey').val() == ''){
+					book = createBook();
+				}else{
+					book = updateBook($('#hddKey').val());
+				}
+				
+				localStorage.setItem(book.Id, JSON.stringify(book));
+				
+				showBook(localStorage.getItem(book.Id));
+				clearFields();
+			}
+			
+			//Return a new book
+			function createBook(){
+				var book={
+					Id: GetNewGuid(),
+					Title: $('#txtTitle').val(),
+					Author: $('#txtAuthor').val()
+				};
+				
+				return book;
+			}
+			
+			//Return a book with the new values
+			function updateBook(bookId){
+				var book = JSON.parse(localStorage.getItem(bookId));
+				
+				book.Title = $('#txtTitle').val();
+				book.Author = $('#txtAuthor').val();
+				
+				$('#' + bookId).parent().remove();
+				return book;
+			}
+			
+			//Set book's values to input boxes
+			function setEditableBook(bookId){
+				var book = JSON.parse(localStorage.getItem(bookId));
+				
+				$('#hddKey').val(book.Id);
+				$('#txtTitle').val(book.Title);
+				$('#txtAuthor').val(book.Author);
+			}
+			
+			//Delete item from storage and remove HTML element
+			function deleteBook(bookId){
+				localStorage.removeItem(bookId);
+				
+				$('#' + bookId).parent().remove();
+			}
+			
+			//Clear all data from storage and all HTML elements
+			function clearAllBooks(){
+				localStorage.clear();
+				
+				$('#ulBooks').children().remove();
+			}
+			
+			//Add a book to list with Edit / Delete buttons
+			function showBook(bookToLoad){
+				var book = JSON.parse(bookToLoad);
+				
+				var bookValue = book.Title + ', ' + book.Author;
+				
+				$('<li />', {text: bookValue})
+					.append('<input type="button" value="Edit" onclick="setEditableBook(\'' + book.Id + '\')"/>')
+					.append('<input type="button" value="Delete" onclick="deleteBook(\'' + book.Id + '\')"/>')
+					.append('<input type="hidden" id="' + book.Id + '"/>')
+					.appendTo($('#ulBooks'));
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<header>Books manager</header>
+		<article id="artEdit">
+			<input type="hidden" id="hddKey"/>
+			<label for="txtTitle">Title</label>
+			<input type="text" id="txtTitle" placeholder="Book title"><br />
+			<label for="txtAuthor">Author</label>
+			<input type="text" id="txtAuthor" placeholder="Author's name"><br />
+			
+			<input type="button" value="Save" onclick="saveBook()" />
+		</article>
+		
+		<hr />
+		
+		<article id="artList">
+			<header>Books available</header>
+			<article>
+				<div id="divList">
+					<ul id="ulBooks" />
+				</div>
+				
+				<label for="btnClearAll">Clear all books</label>
+				<input type="button" value="Clear" onclick="clearAllBooks()"/> 
+			</article>
+		</article>
+	</body>
+</html>
