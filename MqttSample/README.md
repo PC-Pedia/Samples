@@ -7,6 +7,7 @@ Projects
 * ConsoleManager:
 	Send commands to the broker through "sensor/s1" topic. For instance:
 	> s1:on
+
 	> s1:off
 
 * NetduinoClient:
