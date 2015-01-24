@@ -1,29 +1,8 @@
-﻿/*
- * Build error: Description  0x80131700 | File MMP
- * https://netmf.codeplex.com/workitem/221
- * 
- * Copy MetaDataProcessor.exe.config file in %ProgramFiles%\Microsoft .NET Micro Framework\v4.3\Tools
- * 
- * Content MetaDataProcessor.exe.config file:
- 
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-	<startup useLegacyV2RuntimeActivationPolicy="true">
-		<supportedRuntime version="v4.0.30319"/>
-	</startup>
-</configuration>
- 
- * 
- */
-
-using System;
-using System.Net;
-using System.Net.Sockets;
+﻿using System;
 using System.Text;
 using System.Threading;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
-using SecretLabs.NETMF.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
