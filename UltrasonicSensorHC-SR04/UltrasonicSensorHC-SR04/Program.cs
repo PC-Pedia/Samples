@@ -30,40 +30,19 @@ namespace UltrasonicSensorHC_SR04
 
 		private static void Run()
 		{
-			//Thread.Sleep(250);
-			//_endTick = 0L; // Reset the end time.
-			//_beginTick = DateTime.Now.Ticks; // Time when the signal is thrown.
-
-			//_triggerPort.Write(true); // Start to emit signal
-			
-			//Thread.Sleep(2); // Time emiting the signal
-			
-			//_triggerPort.Write(false); // Stop to emit signal
-
-			//Thread.Sleep(50); // Sleep to give time to the EchoPortOnOnInterrupt event to throw it.
-
-			//if (_endTick > 0L)
-			//{
-			//	var elapsed = _endTick - _beginTick; // Calculate the round trip time from trigger to echo port after bouncing
-
-			//	Debug.Print(CalculateDistance(elapsed).ToString());
-			//}
-			//else
-			//{
-			//	Debug.Print("-1");
-			//}
-
 			_endTick = 0L;
 			_beginTick = DateTime.Now.Ticks;
+			
 			_triggerPort.Write(true);
+			
 			Thread.Sleep(500);
+			
 			_triggerPort.Write(false);
 		}
 
 		// Echo received the signal after bouncing
 		private static void EchoPortOnOnInterrupt(uint data1, uint data2, DateTime time)
 		{
-			
 			_endTick = time.Ticks;
 			
 			if (_endTick > 0L)
