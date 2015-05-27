@@ -200,6 +200,7 @@ AmazonApiSample/
 MongoDbInterfaceError/
 Angular/
 KinectSkeletalSample/
-NodeJS/
 ObservableCollectionSample/
 WebApiSample/
+DocXSample/
+SerializeOverMqtt/
