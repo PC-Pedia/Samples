@@ -204,3 +204,9 @@ ObservableCollectionSample/
 WebApiSample/
 DocXSample/
 SerializeOverMqtt/
+node_modules/
+BugReportingWindow/
+NodeJS/
+SignalRSample/
+Win10 IoT/
+.settings/
