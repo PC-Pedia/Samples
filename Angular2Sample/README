@@ -1,0 +1,10 @@
+Original code: http://dotnetspeak.com/2015/06/angular-2-in-visual-studio-2015-with-typescript
+
+This code has been made with the template "HTML Application with TypeScript" of VS 2015 update 1
+
+Error: TS2307 Cannot find module 'angular2/angular2'
+
+The only differences are the .ts file name and .js scripts version. I tried to build with the same versions but doesn't work.
+I follow all steps, install typings, AMD module option, the property TypeScriptExperimentalDecorators is true...
+
+
