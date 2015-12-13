@@ -8,4 +8,7 @@ Errors:
  > To know the executable path: where tsc
 
  # http://stackoverflow.com/questions/34225607/angular2-asp-net-5-project-setup-type-expected-error-on-di-d-ts
+ 
+- Build error: error TS2307: Cannot find module 'angular2/angular2'.
+ > Check the angular2 package version. This example use @2.0.0-alpha.52. I tried to build with alpha.53, the last one at this moment, but does not work. In package.json should have the exact dependency "angular2": "2.0.0-alpha.52"
 
