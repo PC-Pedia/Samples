@@ -1,0 +1,11 @@
+Based on: https://angular.io/docs/ts/latest/quickstart.html
+
+Errors:
+
+- Build error: “Type expected” error on di.d.ts
+ > Check tsc version: tsc -v 
+ > If the version is <1.7 update it: npm i -g typescript
+ > To know the executable path: where tsc
+
+ # http://stackoverflow.com/questions/34225607/angular2-asp-net-5-project-setup-type-expected-error-on-di-d-ts
+
